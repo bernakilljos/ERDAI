@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:mollydays.tistory.com)",
+      "mcp__ide__getDiagnostics",
+      "Bash(node:*)",
+      "Bash(cd /e/PJT/ERDAI/frontend && npm install 2>&1)",
+      "Bash(true:*)",
+      "Bash(head:*)",
+      "Bash(cd /e/PJT/ERDAI/worker && \"/c/python314/python.exe\" -m pip install -r requirements.txt 2>&1)",
+      "Bash(cd /e/PJT/ERDAI/server && npm install 2>&1)",
+      "Bash(cd E:/PJT/ERDAI/server && npx tsc --noEmit 2>&1)",
+      "Bash(cd E:/PJT/ERDAI/server && node_modules/.bin/tsc --noEmit 2>&1)",
+      "Bash(\"E:/PJT/ERDAI/server/node_modules/typescript/bin/tsc\":*)",
+      "Bash(\"E:/PJT/ERDAI/frontend/node_modules/typescript/bin/tsc\":*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(powershell:*)",
+      "Bash(echo not found:*)",
+      "Bash(python --version 2>&1 && pip --version 2>&1)",
+      "Bash(pip install:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)",
+      "Bash(grep :4000:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(grep :8000:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)",
+      "Bash(cd /e/PJT/ERDAI/frontend && npx tsc --noEmit 2>&1)",
+      "Bash(cd E:/PJT/ERDAI/server && npm install mysql2 mssql && npm install --save-dev @types/mssql 2>&1)",
+      "Bash(cd E:/PJT/ERDAI/frontend && npx tsc --noEmit 2>&1)",
+      "Bash(echo TS OK:*)",
+      "Bash(wmic process:*)",
+      "Bash(cat \"E:/PJT/ERDAI/server/data/projects/mm0b54kz9s4vk9vp.json\" | python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('connections:', json.dumps\\(d.get\\('connections',[]\\), indent=2, ensure_ascii=False\\)\\); print\\('snapshots count:', len\\(d.get\\('snapshots',[]\\)\\)\\);\" 2>&1)",
+      "Bash(cat \"E:/PJT/ERDAI/server/data/projects/mm0b54kz9s4vk9vp.json\" | python -c \"import json,sys; d=json.load\\(sys.stdin\\); snaps=d.get\\('snapshots',[]\\); last=snaps[-1] if snaps else {}; print\\('snapshot tableCount:', last.get\\('tableCount'\\)\\); print\\('snapshot tables[:5]:', [t['name'] for t in \\(last.get\\('tables',[]\\)\\)[:5]]\\);\" 2>&1)",
+      "Bash(cat \"E:/PJT/ERDAI/server/data/projects/mm0b54kz9s4vk9vp.json\" | python -c \"\nimport json,sys\nd=json.load\\(sys.stdin\\)\ngraphs=d.get\\('graphs',[]\\)\nif graphs:\n    g=graphs[-1]\n    tables=g.get\\('graph',{}\\).get\\('tables',[]\\)\n    print\\('graph table count:', len\\(tables\\)\\)\n    print\\('graph tables[:5]:', [t.get\\('name'\\) for t in tables[:5]]\\)\nelse:\n    print\\('NO GRAPHS'\\)\n\" 2>&1)",
+      "Bash(echo exit_code=$?:*)",
+      "Bash(echo EXIT:$?:*)",
+      "Bash(tail:*)"
+    ]
+  }
+}

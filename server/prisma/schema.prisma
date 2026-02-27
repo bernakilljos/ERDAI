@@ -1,0 +1,74 @@
+﻿generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String      @id @default(uuid())
+  loginId            String      @unique
+  password           String
+  role               String
+  mustChangePassword Boolean     @default(true)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  projects           Project[]   @relation("ProjectOwner")
+  connections        Connection[]
+}
+
+model Project {
+  id          String            @id @default(uuid())
+  projectName String
+  description String?
+  ownerId     String
+  owner       User              @relation("ProjectOwner", fields: [ownerId], references: [id])
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  connections Connection[]
+  snapshots   MetadataSnapshot[]
+  erdGraphs   ErdGraph[]
+}
+
+model Connection {
+  id             String            @id @default(uuid())
+  projectId      String
+  project        Project           @relation(fields: [projectId], references: [id])
+  connectionName String
+  dbType         String
+  host           String
+  port           Int
+  database       String?
+  serviceName    String?
+  sid            String?
+  username       String
+  passwordEnc    String
+  createdAt      DateTime          @default(now())
+  snapshots      MetadataSnapshot[]
+}
+
+model MetadataSnapshot {
+  id          String   @id @default(uuid())
+  projectId   String
+  connectionId String
+  project     Project  @relation(fields: [projectId], references: [id])
+  connection  Connection @relation(fields: [connectionId], references: [id])
+  extractedAt DateTime
+  schemaName  String
+  tableCount  Int
+  columnCount Int
+  fkCount     Int
+  tables      Json
+  createdAt   DateTime @default(now())
+}
+
+model ErdGraph {
+  id          String   @id @default(uuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id])
+  extractedAt DateTime
+  graph       Json
+  createdAt   DateTime @default(now())
+}

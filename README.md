@@ -1,17 +1,37 @@
-# ERDAI Logical/Physical Modeling Pack
+﻿# ERDAI
 
-이 패키지는 ERDAI 프로젝트에서 **논리 모델 + 물리 모델 + ERD 문서화**를 시작하기 위한 템플릿 모음이다.
+## 개발 실행
 
-## 포함 내용
-- docs/modeling/*.md (논리/물리/네이밍/도메인사전)
-- docs/erd/*.md (논리ERD/물리ERD)
-- docs/prompts/*.md (Claude Code 지시문 복붙용)
-- .claude/skills/* (논리/물리 모델링 스킬)
-- .claude/hooks/* (문서 검증/간단 시크릿 스캔)
-- .claude/settings.json (기본 훅 설정)
+### 1) 서버 (JSON 저장소)
+```bash
+cd server
+npm install
+npm run dev
+```
 
-## 사용 순서
-1. 패키지 압축 해제
-2. 프로젝트 루트에 파일 병합
-3. Claude Code에서 `/memory`, `/hooks` 확인
-4. `docs/prompts/*.md` 지시문으로 작업 시작
+### 2) 워커
+```bash
+cd worker
+pip install -r requirements.txt
+uvicorn app.main:app --port 8000 --reload
+```
+
+### 3) 프론트
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 저장소
+- `data/` 폴더에 프로젝트별 JSON이 저장됩니다.
+- 서버 재시작 후에도 기존 데이터가 유지됩니다.
+
+## 테스트
+```bash
+cd server
+npm test
+
+cd worker
+pytest -q
+```

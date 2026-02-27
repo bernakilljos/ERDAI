@@ -1,0 +1,42 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+      - name: Install server deps
+        run: |
+          cd server
+          npm install
+      - name: Run server tests
+        run: |
+          cd server
+          npm test
+
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install worker deps
+        run: |
+          cd worker
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run worker tests
+        run: |
+          cd worker
+          pytest -q
